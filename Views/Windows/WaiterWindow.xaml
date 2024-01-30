@@ -1,0 +1,52 @@
+﻿<Window x:Class="TsarevZadohinDemoCofe.Views.Windows.WaiterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TsarevZadohinDemoCofe.Views.Windows"
+        mc:Ignorable="d"
+        Title="Окно официанта" 
+        Height="1280" 
+        Width="720"
+        MinHeight="450"
+        MinWidth="800">
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Row="0" 
+                Grid.Column="0" 
+                Content="Просмотреть заказы"
+                Name="ViewOrderBtn" 
+                Height="40" 
+                VerticalAlignment="Top"
+                Click="ViewOrderBtn_Click"/>
+        
+        
+        
+        <Button Grid.Row="0" 
+                Grid.Column="2" 
+                Content="Создать заказ"
+                Name="CreateOrderBtn" 
+                Height="40" VerticalAlignment="Top"
+                Click="CreateOrderBtn_Click"/>
+
+        <Frame Name="MainFrm"  
+               Grid.Row="2" 
+               Grid.ColumnSpan="6"
+               NavigationUIVisibility="Hidden"/>
+
+    </Grid>
+</Window>
