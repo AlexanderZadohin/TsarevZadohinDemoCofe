@@ -24,9 +24,13 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Логин: "/>
+        
         <TextBlock Grid.Row="2" Text="Пароль: "/>
-        <TextBox Grid.Column="2"/>
-        <PasswordBox Grid.Column="2" Grid.Row="2"/>
-        <Button Grid.Row="4" Content="Войти"/>
+        
+        <TextBox Grid.Column="2" Name="LoginTb"/>
+        
+        <PasswordBox Grid.Column="2" Grid.Row="2" Name="PasswordPb"/>
+        
+        <Button Grid.Row="4" FontSize="7" Name="EnterBtn" Content="Войти" Click="EnterBtn_Click"/>
     </Grid>
 </Window>

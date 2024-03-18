@@ -29,5 +29,10 @@ namespace TsarevZadohinDemoCofe.Views.Pages
         {
 
         }
+
+        private void AddOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -35,8 +35,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +62,49 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppData\MessageBoxHelper.cs" />
+    <Compile Include="Model\CafeDemoModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CafeDemoModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CafeDemoModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CafeDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CafeDemoModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CafeDemoModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Employee.cs">
+      <DependentUpon>CafeDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EmployeeShift.cs">
+      <DependentUpon>CafeDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Order.cs">
+      <DependentUpon>CafeDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\OrderPosition.cs">
+      <DependentUpon>CafeDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Position.cs">
+      <DependentUpon>CafeDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PositionType.cs">
+      <DependentUpon>CafeDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Role.cs">
+      <DependentUpon>CafeDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Shift.cs">
+      <DependentUpon>CafeDemoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Table.cs">
+      <DependentUpon>CafeDemoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\CreateOrdersPage.xaml.cs">
       <DependentUpon>CreateOrdersPage.xaml</DependentUpon>
     </Compile>
@@ -67,8 +117,8 @@
     <Compile Include="Views\Pages\ShiftsPage.xaml.cs">
       <DependentUpon>ShiftsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\AddEditEmployeeWindow.xaml.cs">
-      <DependentUpon>AddEditEmployeeWindow.xaml</DependentUpon>
+    <Compile Include="Views\Windows\AddNewEmployeeWindow.xaml.cs">
+      <DependentUpon>AddNewEmployeeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\AddShiftWindow.xaml.cs">
       <DependentUpon>AddShiftWindow.xaml</DependentUpon>
@@ -133,7 +183,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\AddEditEmployeeWindow.xaml">
+    <Page Include="Views\Windows\AddNewEmployeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,6 +226,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Model\CafeDemoModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CafeDemoModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\CafeDemoModel.edmx.diagram">
+      <DependentUpon>CafeDemoModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -185,8 +243,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AppData\" />
-    <Folder Include="Model\" />
+    <Content Include="Model\CafeDemoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CafeDemoModel.edmx</DependentUpon>
+      <LastGenOutput>CafeDemoModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\CafeDemoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CafeDemoModel.edmx</DependentUpon>
+      <LastGenOutput>CafeDemoModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

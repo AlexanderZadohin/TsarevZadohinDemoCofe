@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using TsarevZadohinDemoCofe.Model;
 
 namespace TsarevZadohinDemoCofe
 {
@@ -13,5 +14,6 @@ namespace TsarevZadohinDemoCofe
     /// </summary>
     public partial class App : Application
     {
+        public static CafeZadohinDemoEntities context = new CafeZadohinDemoEntities();
     }
 }

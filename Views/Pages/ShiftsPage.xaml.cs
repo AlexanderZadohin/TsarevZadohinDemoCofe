@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TsarevZadohinDemoCofe.Model;
 using TsarevZadohinDemoCofe.Views.Windows;
 
 namespace TsarevZadohinDemoCofe.Views.Pages
@@ -24,6 +25,8 @@ namespace TsarevZadohinDemoCofe.Views.Pages
         public ShiftsPage()
         {
             InitializeComponent();
+
+            ShiftsLv.ItemsSource = App.context.Shift.ToList();
         }
 
         private void ChangeStatusBtn_Click(object sender, RoutedEventArgs e)
@@ -35,6 +38,18 @@ namespace TsarevZadohinDemoCofe.Views.Pages
         {
             AddShiftWindow addShiftWindow = new AddShiftWindow();
             addShiftWindow.ShowDialog();
+        }
+
+        private void ShiftsLv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Shift selectedShift = ShiftsLv.SelectedItem as Shift;
+            ShiftGrid.DataContext = selectedShift;
+            ShiftEmployeesLv.ItemsSource = App.context.Employee.Where(es => es.Id == selectedShift.Id).ToList();
+        }
+
+        private void AddNewShiftBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
         }
     }
 }

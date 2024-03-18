@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:TsarevZadohinDemoCofe.Views.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1240"
-      Title="Страница смены">
+      Title="Страница заказов">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -20,7 +20,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="AddShiftBtn" 
-                Content="Добавить смену" 
+                Content="Добавить заказов" 
                 Click="AddShiftBtn_Click"/>
         <ListView x:Name="OrderLv" 
                   Grid.Row="2" 

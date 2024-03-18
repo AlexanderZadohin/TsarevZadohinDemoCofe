@@ -11,22 +11,46 @@
         Width="1280"
         Height="720">
     <Grid Margin="20">
-        <ListView Name="OrdersLv">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Номер заказа"/>
-                    <GridViewColumn Header="Блюдо в заказе"/>
-                    <GridViewColumn Header="Номер стола"/>
-                    <GridViewColumn Header="Статус">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <ComboBox Name="OrderStatusCmb"
-                                           Width="150"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                     </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <ListView Name="OrdersLv" SelectionChanged="OrdersLv_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Номер заказа" DisplayMemberBinding="{Binding Order.id}"/>
+                        <GridViewColumn Header="Блюдо в заказе" DisplayMemberBinding="{Binding Position.Name}"/>
+                        <GridViewColumn Header="Номер стола" DisplayMemberBinding="{Binding Order.Table.Name}"/>
+                        <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Order.ReadyStatus.Name}"/>
+                        <GridViewColumn Header="Статус">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox Name="CookCheck" Checked="CookCheck_Checked" Unchecked="CookCheck_Unchecked"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Grid Name="OrderGrid" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="{Binding Order.id}"/>
+                <TextBlock Grid.Row="2" Text="{Binding Position.Name}"/>
+                <TextBlock Grid.Row="4" Text="{Binding Order.Table.Name}"/>
+                <CheckBox Grid.Row="6" Content="Готовность"/>
+            </Grid>
+
+        </Grid>
     </Grid>
 </Window>

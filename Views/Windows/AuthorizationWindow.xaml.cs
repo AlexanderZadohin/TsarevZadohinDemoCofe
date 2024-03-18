@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TsarevZadohinDemoCofe.AppData;
+using TsarevZadohinDemoCofe.Model;
 
 namespace TsarevZadohinDemoCofe.Views.Windows
 {
@@ -22,6 +24,41 @@ namespace TsarevZadohinDemoCofe.Views.Windows
         public AuthorizationWindow()
         {
             InitializeComponent();
+
+        }
+
+        private void EnterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Взять запись из таблицы, которая подходит условию
+            Employee employee = App.context.Employee.FirstOrDefault(emp => emp.Login == LoginTb.Text && emp.Password == PasswordPb.Password);
+
+            //Проверка на "Пустое значение" у записи
+            if (employee != null)
+            {
+                //Открыть окно в зависимости от роли
+                switch(employee.RoleId)
+                {
+                    case 1:
+                        AdministrationWindow administrationWindow = new AdministrationWindow();
+                        administrationWindow.Show();
+                        break;
+
+                    case 2:
+                        CookWindow cookWindow = new CookWindow();
+                        cookWindow.Show();
+                        break;
+                    case 3:
+                        WaiterWindow waiterWindow = new WaiterWindow();
+                        waiterWindow.Show();
+                        break;
+                }
+                Close();
+            }
+            else
+            {
+                MessageBoxHelper.Error("Неправильно введен логин и или пароль");
+                //
+            }
         }
     }
 }

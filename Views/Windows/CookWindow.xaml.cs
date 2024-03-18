@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TsarevZadohinDemoCofe.Model;
 
 namespace TsarevZadohinDemoCofe.Views.Windows
 {
@@ -22,6 +23,24 @@ namespace TsarevZadohinDemoCofe.Views.Windows
         public CookWindow()
         {
             InitializeComponent();
+            OrdersLv.ItemsSource = App.context.OrderPosition.ToList();
+
+        }
+
+        private void OrdersLv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            OrderGrid.DataContext = OrdersLv.SelectedItem as OrderPosition;
+        }
+
+        private void CookCheck_Checked(object sender, RoutedEventArgs e)
+        {
+
+            App.context.SaveChanges();
+        }
+
+        private void CookCheck_Unchecked(object sender, RoutedEventArgs e)
+        {
+            App.context.SaveChanges();
         }
     }
 }
