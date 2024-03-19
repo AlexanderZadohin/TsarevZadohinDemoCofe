@@ -36,7 +36,7 @@
                 Name="ChangeStatusBtn" 
                 Content="Изменить статус" 
                 Click="ChangeStatusBtn_Click"/>-->
-            <TextBox Name="SearchByNameTb"/>
+            <TextBox Name="SearchByNameTb" LostFocus="SearchByNameTb_LostFocus" GotFocus="SearchByNameTb_GotFocus"/>
             <TextBlock Name="PlaceholderTbl" Text="Поиск по имени"/>
 
             <ComboBox Name="FilrterByRoleCmb" Grid.Column="2" SelectionChanged="FilrterByRoleCmb_SelectionChanged"/>

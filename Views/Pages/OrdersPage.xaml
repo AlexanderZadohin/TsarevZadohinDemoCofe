@@ -25,7 +25,29 @@
         <ListView x:Name="OrderLv" 
                   Grid.Row="2" 
                   Grid.ColumnSpan="3">
-
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="№ заказа"
+                                    DisplayMemberBinding="{Binding Order.Number}"/>
+                    <GridViewColumn Header="Фото">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Position.Photo}" Width="150" Height="150" Stretch="Uniform"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Наименован"
+                                    DisplayMemberBinding="{Binding Position.Name}"/>
+                    <GridViewColumn Header="Сотрудники"
+                                    DisplayMemberBinding="{Binding Order.Employee.Name}"/>
+                    <GridViewColumn Header="Дата"
+                                    DisplayMemberBinding="{Binding Order.DateOfAccept, StringFormat=dd.MM.yyyy}"/>
+                    <GridViewColumn Header="Готовность"
+                                    DisplayMemberBinding="{Binding IsReadyText}"/>
+                    <GridViewColumn Header="Оплата"
+                                    DisplayMemberBinding="{Binding Order.IsPaidText}"/>
+                </GridView>
+            </ListView.View>
         </ListView>
         </Grid>
 </Page>

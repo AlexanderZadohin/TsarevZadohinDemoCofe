@@ -22,6 +22,15 @@ namespace TsarevZadohinDemoCofe.Model
     
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public string NameInitials
+        {
+            get
+            {
+                return 
+            }
+        }
+
         public System.DateTime DateOfBirth { get; set; }
         public bool IsFired { get; set; }
         public int RoleId { get; set; }

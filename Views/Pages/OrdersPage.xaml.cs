@@ -23,6 +23,8 @@ namespace TsarevZadohinDemoCofe.Views.Pages
         public OrdersPage()
         {
             InitializeComponent();
+
+            OrderLv.ItemsSource = App.context.OrderPosition.ToList();
         }
 
         private void AddShiftBtn_Click(object sender, RoutedEventArgs e)

@@ -51,7 +51,7 @@ namespace TsarevZadohinDemoCofe.Views.Pages
 
             RoleCmb.ItemsSource = App.context.Role.ToList();
             RoleCmb.DisplayMemberPath = "Name";
-            RoleCmb.SelectedValuePath = "id";
+            RoleCmb.SelectedValuePath = "Id";
             RoleCmb.SelectedIndex = (EmployeeLv.SelectedItem as Employee).RoleId - 1;
 
 
@@ -67,6 +67,19 @@ namespace TsarevZadohinDemoCofe.Views.Pages
             App.context.SaveChanges();
             EmployeeLv.ItemsSource = App.context.Employee.ToList();
             MessageBox.Show("Данные пользователя изменены успешно!");
+        }
+
+        private void SearchByNameTb_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (SearchByNameTb.Text == "")
+            {
+                PlaceholderTbl.Text = "Поиск по имени";
+            }
+        }
+
+        private void SearchByNameTb_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PlaceholderTbl.Text = "";
         }
     }
 }

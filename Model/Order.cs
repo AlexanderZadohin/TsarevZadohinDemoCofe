@@ -27,6 +27,14 @@ namespace TsarevZadohinDemoCofe.Model
         public bool IsPaid { get; set; }
         public System.DateTime DateOfAccept { get; set; }
     
+        public string IsPaidText
+        {
+            get
+            {
+                return IsPaid == true ? "Оплачен" : "Принят"; 
+            }
+        }
+
         public virtual Employee Employee { get; set; }
         public virtual Table Table { get; set; }
         public virtual ICollection<OrderPosition> OrderPosition { get; set; }

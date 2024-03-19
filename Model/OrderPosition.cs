@@ -11,14 +11,22 @@ namespace TsarevZadohinDemoCofe.Model
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class OrderPosition
     {
         public int Id { get; set; }
         public int OrderId { get; set; }
         public int PositionId { get; set; }
         public bool IsReady { get; set; }
-    
+
+        public string IsReadyText
+        {
+            get
+            {
+                return IsReady == true ? "Готов" : "Готовится";
+            }
+        }
+
         public virtual Order Order { get; set; }
         public virtual Position Position { get; set; }
     }
