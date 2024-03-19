@@ -10,31 +10,71 @@
         MinWidth="800"
         Width="1280"
         Height="720">
-    <Grid Margin="20">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <ListView Name="OrdersLv" SelectionChanged="OrdersLv_SelectionChanged">
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView x:Name="EmployeeLv" 
+                  Grid.Row="2" 
+                   SelectionChanged="EmployeeLv_SelectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Номер заказа" DisplayMemberBinding="{Binding Order.id}"/>
-                        <GridViewColumn Header="Блюдо в заказе" DisplayMemberBinding="{Binding Position.Name}"/>
-                        <GridViewColumn Header="Номер стола" DisplayMemberBinding="{Binding Order.Table.Name}"/>
-                        <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Order.ReadyStatus.Name}"/>
-                        <GridViewColumn Header="Статус">
+                        <GridViewColumn Header="№ заказа"
+                                    DisplayMemberBinding="{Binding Order.Number}"/>
+                        <GridViewColumn Header="Фото">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox Name="CookCheck" Checked="CookCheck_Checked" Unchecked="CookCheck_Unchecked"/>
+                                    <Image Source="{Binding Position.Photo}" Width="150" Height="150" Stretch="Uniform"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+                        <GridViewColumn Header="Наименован"
+                                    DisplayMemberBinding="{Binding Position.Name}"/>
+                        <GridViewColumn Header="Сотрудники"
+                                    DisplayMemberBinding="{Binding Order.Employee.NameInitials}"/>
+                        <GridViewColumn Header="Дата"
+                                    DisplayMemberBinding="{Binding Order.DateOfAccept, StringFormat=dd.MM.yyyy}"/>
+                        <GridViewColumn Header="Готовность"
+                                    DisplayMemberBinding="{Binding IsReadyText}"/>
+                        <GridViewColumn Header="Оплата"
+                                    DisplayMemberBinding="{Binding Order.IsPaidText}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Grid Name="OrderGrid" Grid.Column="1">
+            <Grid Name="EmployeGrid" Grid.Column="2">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="auto"/>
@@ -45,12 +85,28 @@
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="{Binding Order.id}"/>
-                <TextBlock Grid.Row="2" Text="{Binding Position.Name}"/>
-                <TextBlock Grid.Row="4" Text="{Binding Order.Table.Name}"/>
-                <CheckBox Grid.Row="6" Content="Готовность"/>
-            </Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Номер заказа:" HorizontalAlignment="Right"/>
+                <TextBlock Grid.Column="2" Text="{Binding Order.Number}"/>
 
+                <TextBlock Grid.Row="2" Text="Название:" HorizontalAlignment="Right"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Position.Name}"/>
+
+                <TextBlock Grid.Row="4" Text="Официант:" HorizontalAlignment="Right"/>
+                <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding DateOfBirth, StringFormat={}{0}:dd.MM.yyyy}"/>
+
+                <TextBlock Grid.Row="6" Text="Должность:" HorizontalAlignment="Right"/>
+                <ComboBox Grid.Row="6" Name="RoleCmb" Grid.Column="2" />
+
+                <TextBlock Grid.Row="8" Text="Статус:" HorizontalAlignment="Right"/>
+                <CheckBox Content="" IsChecked="{Binding IsFired}" Grid.Row="8" Name="EmployeeStatusCmb" Grid.Column="2" />
+
+                <Button Grid.Row="14" Grid.Column="2" Name="SaveChangeBtn" Content="Сохранить" Click="SaveChangeBtn_Click"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

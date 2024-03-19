@@ -39,7 +39,7 @@
                     <GridViewColumn Header="Наименован"
                                     DisplayMemberBinding="{Binding Position.Name}"/>
                     <GridViewColumn Header="Сотрудники"
-                                    DisplayMemberBinding="{Binding Order.Employee.Name}"/>
+                                    DisplayMemberBinding="{Binding Order.Employee.NameInitials}"/>
                     <GridViewColumn Header="Дата"
                                     DisplayMemberBinding="{Binding Order.DateOfAccept, StringFormat=dd.MM.yyyy}"/>
                     <GridViewColumn Header="Готовность"
